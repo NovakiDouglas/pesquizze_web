@@ -33,7 +33,7 @@
                             "node_modules/jquery/dist/jquery.min.js",
                             "node_modules/jquery-ui-sortable/jquery-ui.min.js",
                             "node_modules/formBuilder/dist/form-builder.min.js",
-                            "node_modules/chart.js/dist/chart.min.js",
+                            "node_modules/chart.js/dist/Chart.min.js",
                             "node_modules/clipboard/dist/clipboard.min.js",
                             "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
                         ],

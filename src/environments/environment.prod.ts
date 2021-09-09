@@ -8,5 +8,5 @@ export const environment = {
     storageBucket: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     messagingSenderId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     appId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  }  
+  },  
 };

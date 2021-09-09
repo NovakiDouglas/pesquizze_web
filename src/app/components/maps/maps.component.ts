@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-maps',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapsComponent implements OnInit {
 
-  constructor() { }
+  lat = -25.7515124;
+  lng = -49.7097205;
+  private mylocations = [{  }]
+
+
+  constructor(private firestore: AngularFirestore,) { }
 
   ngOnInit(): void {
+    const query = firebase.firestore().collection('answers');
+    query.onSnapshot((querySnapshot) => {
+      querySnapshot.forEach(x => {
+        this.mylocations.push({lat:x.data()['localization']['w_'], lng:x.data()['localization']['m_']})
+      });
+    })
   }
 
 }

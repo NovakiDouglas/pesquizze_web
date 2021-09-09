@@ -22,6 +22,9 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FormCreateComponent } from './components/form-create/form-create.component';
 import { FormEditComponent } from './components/form-edit/form-edit.component';
 import { FormDetailsComponent } from './components/form-details/form-details.component';
+import { ChartsModule } from 'ng2-charts';
+import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -39,6 +42,7 @@ import { FormDetailsComponent } from './components/form-details/form-details.com
     FormCreateComponent,
     FormEditComponent,
     FormDetailsComponent,
+    MyBarChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,10 @@ import { FormDetailsComponent } from './components/form-details/form-details.com
     AngularFireModule.initializeApp(environment.firebae),
     AngularFireAuthModule,
     AngularFirestoreModule,    
+    ChartsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDMURlkdpTU7UHkzZtrXSX8eU54BLh4Pf8'
+    })
   ],
   providers: [NgAuthService],
   bootstrap: [AppComponent]
