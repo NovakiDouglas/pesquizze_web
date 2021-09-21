@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
     responsive: true
   };
   public barChartLabels = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
-  public barChartType = 'line';
+  public barChartType = 'bar';
   public barChartLegend = true;
   public barChartData = [
     {data: [65, 59, 80, 81, 56, 55, 120,65, 59, 80, 81, 56], label: 'Series A'},

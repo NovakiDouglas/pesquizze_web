@@ -25,6 +25,7 @@ import { FormDetailsComponent } from './components/form-details/form-details.com
 import { ChartsModule } from 'ng2-charts';
 import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
 import { AgmCoreModule } from '@agm/core';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { AgmCoreModule } from '@agm/core';
     FormEditComponent,
     FormDetailsComponent,
     MyBarChartComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,7 @@ import { AgmCoreModule } from '@agm/core';
     AngularFireAuthModule,
     AngularFirestoreModule,    
     ChartsModule,
+    FormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDMURlkdpTU7UHkzZtrXSX8eU54BLh4Pf8'
     })
