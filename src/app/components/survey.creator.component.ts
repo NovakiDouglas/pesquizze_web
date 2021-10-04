@@ -74,7 +74,6 @@ export class SurveyCreatorComponent {
   }
 
   saveMySurvey = () => {
-    console.log(JSON.stringify(this.surveyCreator.text));
     this.surveySaved.emit(JSON.parse(this.surveyCreator.text));
   };
 }

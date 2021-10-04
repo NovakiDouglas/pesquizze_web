@@ -81,7 +81,6 @@ export class FormEditComponent implements OnInit {
 
   ReadyOneCategory() {
     this.dbCategoryService.getOne_category(id).then((value) => {
-      console.log('from component-', value);
       this.field = value['field'],
         this.name = value['name'],
         this.value = value['value'],

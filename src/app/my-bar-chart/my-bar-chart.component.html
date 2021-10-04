@@ -1,11 +1,40 @@
-<div>
-    <div style="display: block">
-      <canvas baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
-              [legend]="barChartLegend"
-              [chartType]="barChartType">
-      </canvas>
+<div class="container-fluid mt--7">
+  <div class="main-container">
+    <div class="d-flex justify-content-center flex-wrap">
+      <div class="cards">
+      <div class="cards">
+        <div class="card card-1">
+          <div class="card__icon"><i class="fas fa-bolt"></i></div>
+          <p class="card__exit"><i class="fas fa-times"></i></p>
+          
+          <div style="display: block">
+            <h2 class="card__title">{{question}}</h2>
+            <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType"></canvas>
+          </div>
+
+          <p class="card__apply">
+            <a class="card__link" href="#">Fazer algo <i class="fas fa-arrow-right"></i></a>
+          </p>
+        </div>
     </div>
+
+    <div class="cards">
+      <div class="card card-1">
+        <div class="card__icon"><i class="fas fa-bolt"></i></div>
+        <p class="card__exit"><i class="fas fa-times"></i></p>
+        <div style="display: block">
+          <h2 class="card__title">{{question}}</h2>
+          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+              [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+        </div>
+
+        <p class="card__apply">
+          <a class="card__link" href="#">Fazer algo <i class="fas fa-arrow-right"></i></a>
+        </p>
+      </div>
   </div>
+
+  </div>
+</div>

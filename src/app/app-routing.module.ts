@@ -15,6 +15,7 @@ import { FormEditComponent } from './components/form-edit/form-edit.component';
 import { FormDetailsComponent } from './components/form-details/form-details.component';
 import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
 import { MapsComponent } from './components/maps/maps.component';
+import { ChartAnswerComponent } from './components/chart-answer/chart-answer.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,8 @@ const routes: Routes = [
       { path: 'form-edit/:id', component: FormEditComponent },
       { path: 'form-details/:id', component: FormDetailsComponent },
       { path: 'chart', component: MyBarChartComponent },
-      { path: 'maps', component: MapsComponent }
+      { path: 'maps', component: MapsComponent },
+      { path: 'analytics', component: ChartAnswerComponent }
     ]
   }
 ];

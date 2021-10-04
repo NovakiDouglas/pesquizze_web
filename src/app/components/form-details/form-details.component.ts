@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DbCategoryService } from 'src/app/db-category.service';
+import { ChartService } from 'src/app/chart.service'
 import { map } from 'rxjs/operators';
 
 declare var $: any;
-var id;
 
 @Component({
   selector: 'app-form-details',
@@ -19,19 +19,23 @@ export class FormDetailsComponent implements OnInit {
   name: string;
   value: number;
   cont: number;
+  questao = "teste";
+  id: String;
 
   constructor(
     public dbCategoryService: DbCategoryService,
-    public router: ActivatedRoute
+    public router: ActivatedRoute,
+    public chartService: ChartService,
+    public rter: Router
   ) {}
 
   ngOnInit(): void {
-    id = this.router.snapshot.paramMap.get('id');
+    this.id = this.router.snapshot.paramMap.get('id');
     this.ReadyOneCategory();
   }
 
   ReadyOneCategory() {
-    this.dbCategoryService.getOne_category(id).then((value) => {
+    this.dbCategoryService.getOne_category(this.id.toString()).then((value) => {
       this.ReadyField(value['field']);
       (this.field = value['field']),
         (this.head = value['head']),
@@ -42,6 +46,11 @@ export class FormDetailsComponent implements OnInit {
   ReadyField(fields) {
     this.cont = 0;
     this.outputArray = JSON.parse(fields);
-    console.log(this.outputArray);
   }
+
+   sendQuestionRedirect(qst){
+   this.chartService.setQuestao(qst,this.id);
+    this.rter.navigate(['/chart']);
+  }
+
 }

@@ -13,8 +13,6 @@ export class DbCategoryService {
     return this.firestore.collection('categorias').add(record);
   }
   ready_category(){
-
-    console.log(this.firestore.collection('categorias'));
     return this.firestore.collection('categorias').snapshotChanges();
   }
 

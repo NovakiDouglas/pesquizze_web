@@ -31,7 +31,6 @@ export class FormComponent implements OnInit {
           //inserir demais atributos que serao retornados para a tela de listagem
         };
       })
-      console.log(this.dbCategoryService);
     });
   }
   CreateRecord(){
