@@ -11,8 +11,14 @@ export class ChartService {
   private data: Chart;
   private listAnswer: Chart[];
   private questao: String;
-  private idSurvey: String;
-  private a = ['1', '1', '2', '3', '3', '1'];
+  private idSurvey: String = '9ULmNQYcJAaYhAIgcyZD';
+  private a = [];
+  ///
+  public labelChart = [];
+  private label = [];
+  private chart = [];
+  public dataChart = [];
+  public questionType: String;
   private unique;
 
   constructor(private router: Router, public afs: AngularFirestore) {}
@@ -28,7 +34,13 @@ export class ChartService {
   }
 
   getFirestoreData() {
-     this.afs
+    this.a = [];
+    this.labelChart = [];
+    //filtro unico
+    this.unique = this.a.filter((item, i, ar) => ar.indexOf(item) === i);
+    //alert(this.unique);
+
+    this.afs
       .collection<any>('answers', (ref) =>
         ref.where('identifier', '==', this.idSurvey)
       )
@@ -41,36 +53,168 @@ export class ChartService {
           } as Chart;
         });
       });
-
-    this.listAnswer.forEach((element) => {
-      var res = JSON.parse(element.result.toString());
-      var results = [];
-      for(let element in res['results']){
-        results.push({
-          id: element,
-          name: res['results'][element]
-        })
+    var results = [];
+    this.listAnswer.forEach((el) => {
+      var res = [el.result];
+      for (let element in res) {
+        results.push(JSON.parse(res[element].toString()));
       }
-      
     });
 
-    //filtro unico
-    this.unique = this.a.filter((item, i, ar) => ar.indexOf(item) === i);
-    alert(this.unique);
+    results.forEach((element) => {
+      var res = element.results;
+      var results = [];
+      for (let element in res) {
+        results.push({
+          id: element,
+          name: res[element],
+        });
+      }
+      results.forEach((element) => {
+        switch (this.questionType) {
+          case 'number': {
+            if (element.name['answer_format']['question_type'] == 'Integer') {
+              if (element.name['results']['answer'] == null) {
+                this.a.push('N/R');
+              } else {
+                this.a.push(element.name['results']['answer']);
+                this.label = this.a.reduce((acc, val) => {
+                  if (!acc[val])
+                    acc[val] = {
+                      value: val,
+                      quantidade: 1,
+                    };
+                  else acc[val]['quantidade']++;
+                  return acc;
+                }, {});
+                this.labelChart = Object.entries(this.label).map((val) => {
+                  return val[1]['value'];
+                });
+                this.dataChart = Object.entries(this.label).map((val) => {
+                  return val[1]['quantidade'];
+                });
+              }
+            }
+            break;
+          }
+          case 'checkbox-group': {
+            if (
+              element.name['answer_format']['question_type'] == 'MultipleChoice'
+            ) {
+              var r = element.name['results'];
+              if (r['answer'] == null) {
+                this.a.push('N/R');
+              } else {
+                r['answer'].forEach((element) => {
+                  this.a.push(element['text']);
+                });
 
-    /*
-    this.afs.collection("answers", ref => ref.where('identifier', '==', this.idSurvey)).snapshotChanges().pipe(
-      map(actions => actions.map(
-        res => {
-          this.data = {id: res.payload.doc.id, ...res.payload.doc.data() as Chart}
-        }
-      ))
-    );*/
+                this.label = this.a.reduce((acc, val) => {
+                  if (!acc[val])
+                    acc[val] = {
+                      value: val,
+                      quantidade: 1,
+                    };
+                  else acc[val]['quantidade']++;
+                  return acc;
+                }, {});
+
+                this.labelChart = Object.entries(this.label).map((val) => {
+                  return val[1]['value'];
+                });
+                this.dataChart = Object.entries(this.label).map((val) => {
+                  return val[1]['quantidade'];
+                });
+              }
+            }
+            break;
+          }
+          case 'radio-group': {
+            if (
+              element.name['answer_format']['question_type'] == 'SingleChoice'
+            ) {
+              var r = element.name['results'];
+              if (r['answer'] == null) {
+                this.a.push('N/R');
+                console.log('N/R');
+              } else {
+                r['answer'].forEach((element) => {
+                  console.log(element['text']['answer']);
+                });
+              }
+            }
+            break;
+          }
+          case 'textarea': {
+            if (element.name['answer_format']['question_type'] == 'Text') {
+              if (element.name['results']['answer'] == null) {
+                this.a.push('N/R');
+                console.log('N/R');
+              } else {
+                this.a.push(element.name['results']['answer']);
+                this.label = this.a.reduce((acc, val) => {
+                  if (!acc[val])
+                    acc[val] = {
+                      value: val,
+                      quantidade: 1,
+                    };
+                  else acc[val]['quantidade']++;
+                  return acc;
+                }, {});
+                this.labelChart = Object.entries(this.label).map((val) => {
+                  return val[1]['value'];
+                });
+                this.dataChart = Object.entries(this.label).map((val) => {
+                  return val[1]['quantidade'];
+                });
+              }
+            }
+            break;
+          }
+          case 'date': {
+            if (
+              element.name['answer_format']['date_time_answer_style'] == 'Date'
+            ) {
+              if (element.name['results']['answer'] == null) {
+                this.a.push('N/R');
+                console.log('N/R');
+              } else {
+
+                this.a.push(element.name['results']['answer']);
+                this.label = this.a.reduce((acc, val) => {
+                  if (!acc[val])
+                    acc[val] = {
+                      value: val,
+                      quantidade: 1,
+                    };
+                  else acc[val]['quantidade']++;
+                  return acc;
+                }, {});
+                this.labelChart = Object.entries(this.label).map((val) => {
+                  return val[1]['value'];
+                });
+                this.dataChart = Object.entries(this.label).map((val) => {
+                  return val[1]['quantidade'];
+                });
+                console.log(element.name['results']['answer']);
+              }
+            }
+            break;
+          }
+          default: {
+            console.log('sem registro');
+            alert('sem registro');
+            break;
+          }
+        } 
+      });
+    });
   }
 
-  setQuestao(questao,  id) {
-    this.questao = questao;
+  setQuestao(questao, id, type) {
     this.idSurvey = id;
+    this.questao = questao;
+    this.questionType = type;
   }
 
   getQuestao() {

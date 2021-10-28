@@ -27,6 +27,7 @@ import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
 import { AgmCoreModule } from '@agm/core';
 import { FormsModule } from '@angular/forms';
 import { ChartAnswerComponent } from './components/chart-answer/chart-answer.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { ChartAnswerComponent } from './components/chart-answer/chart-answer.com
     FormDetailsComponent,
     MyBarChartComponent,
     ChartAnswerComponent,
+    PaymentComponent,
     
   ],
   imports: [

@@ -38,6 +38,9 @@ export class MenuComponent implements OnInit {
   returnPageMaps() {
     return  this.router.navigate(['/maps']);
   }
+  returnPageUsers() {
+    return  this.router.navigate(['/users']);
+  }
 
 
 }

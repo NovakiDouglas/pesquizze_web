@@ -16,6 +16,8 @@ import { FormDetailsComponent } from './components/form-details/form-details.com
 import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
 import { MapsComponent } from './components/maps/maps.component';
 import { ChartAnswerComponent } from './components/chart-answer/chart-answer.component';
+import { UsersComponent } from './components/users/users.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 
 const routes: Routes = [
@@ -35,7 +37,10 @@ const routes: Routes = [
       { path: 'form-details/:id', component: FormDetailsComponent },
       { path: 'chart', component: MyBarChartComponent },
       { path: 'maps', component: MapsComponent },
-      { path: 'analytics', component: ChartAnswerComponent }
+      { path: 'analytics', component: ChartAnswerComponent },
+      { path: 'users', component: UsersComponent },
+      { path: 'payment', component: PaymentComponent }
+      
     ]
   }
 ];

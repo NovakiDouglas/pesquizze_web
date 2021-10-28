@@ -48,9 +48,9 @@ export class FormDetailsComponent implements OnInit {
     this.outputArray = JSON.parse(fields);
   }
 
-   sendQuestionRedirect(qst){
-   this.chartService.setQuestao(qst,this.id);
+   sendQuestionRedirect(qst,type){
     this.rter.navigate(['/chart']);
+    this.chartService.setQuestao(qst,this.id,type);
   }
 
 }

@@ -81,7 +81,7 @@
           <!-- Form -->
           <form class="mt-4 mb-3 d-md-none">
             <div class="input-group input-group-rounded input-group-merge">
-              <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+              <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Pesquisar" aria-label="Pesquisar">
               <div class="input-group-prepend">
                 <div class="input-group-text">
                   <span class="fa fa-search"></span>
@@ -103,40 +103,18 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " (click)="returnPageMaps()">
+              <a class="nav-link " [routerLink]="" (click)="returnPageMaps()">
                 <i class="ni ni-pin-3 text-orange"></i> Mapa
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="./examples/icons.html">
+              <a class="nav-link " [routerLink]="" href="./examples/icons.html">
                 <i class="ni ni-planet text-blue"></i> Relatorio
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="./examples/profile.html">
+              <a class="nav-link " [routerLink]=""(click)="returnPageUsers()">
                 <i class="ni ni-single-02 text-yellow"></i> Usuarios
-              </a>
-            </li>
-          </ul>
-          <!-- Divider -->
-          <hr class="my-3">
-          <!-- Heading -->
-          <h6 class="navbar-heading text-muted">Documentation</h6>
-          <!-- Navigation -->
-          <ul class="navbar-nav mb-md-3">
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-                <i class="ni ni-spaceship"></i> Getting started
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-                <i class="ni ni-palette"></i> Foundation
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-                <i class="ni ni-ui-04"></i> Sair
               </a>
             </li>
           </ul>
@@ -156,7 +134,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-search"></i></span>
                 </div>
-                <input class="form-control" placeholder="Search" type="text">
+                <input class="form-control" placeholder="Pesquisar" type="text">
               </div>
             </div>
           </form>

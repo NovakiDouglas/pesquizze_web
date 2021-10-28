@@ -25,9 +25,8 @@
         <p class="card__exit"><i class="fas fa-times"></i></p>
         <div style="display: block">
           <h2 class="card__title">{{question}}</h2>
-          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-              [legend]="barChartLegend" [chartType]="barChartType">
-            </canvas>
+          <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels"
+              [chartType]="pieChartType"></canvas>
         </div>
 
         <p class="card__apply">
