@@ -25,7 +25,7 @@ import { FormDetailsComponent } from './components/form-details/form-details.com
 import { ChartsModule } from 'ng2-charts';
 import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
 import { AgmCoreModule } from '@agm/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartAnswerComponent } from './components/chart-answer/chart-answer.component';
 import { PaymentComponent } from './components/payment/payment.component';
 
@@ -58,6 +58,7 @@ import { PaymentComponent } from './components/payment/payment.component';
     AngularFirestoreModule,    
     ChartsModule,
     FormsModule,
+    ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDMURlkdpTU7UHkzZtrXSX8eU54BLh4Pf8'
     })

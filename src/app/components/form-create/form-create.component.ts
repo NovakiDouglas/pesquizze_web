@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DbCategoryService } from 'src/app/db-category.service';
 
+
 declare var $: any;
 var json;
 var formBuilder;
+let record = {};
 
 
 const formData = [];
@@ -50,6 +52,7 @@ export class FormCreateComponent implements OnInit {
   qnt = 0;
   vlr = 0;
   balance = 0;
+  display='none';
 
 
 
@@ -67,8 +70,10 @@ export class FormCreateComponent implements OnInit {
     this.vlr = e * this.balance ;
   }
 
+
   Balance(){
     const obj = JSON.parse(formBuilder.formData);
+    this.balance = 0;
     obj.forEach(element => {
       var type = element['type'];
       if(type == "number"){
@@ -93,7 +98,8 @@ export class FormCreateComponent implements OnInit {
 
   CreateRecord(Nome: string,QntPesq: Number,ValorTotal: Number,City: string,State: string,Country: string) {
 
- let record = {};
+    this.display='block';
+ 
     record['field'] = formBuilder.actions.getData('json');
     record['name'] = Nome;
     record['value'] = Number(this.balance);
@@ -102,9 +108,19 @@ export class FormCreateComponent implements OnInit {
     record['city'] = City;
     record['state'] = State;
     record['country'] = Country;
-    this.dbCategoryService.create_category(record);
+  
     
   }
+
+  SaveRecord(){
+     this.dbCategoryService.create_category(record);
+  }
+
+  onCloseHandled(){
+    this.display='none';
+ }
+
+
 
   
   populaEnd() {

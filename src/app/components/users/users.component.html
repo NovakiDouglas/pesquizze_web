@@ -1,3 +1,13 @@
+<script>
+    $(document).ready(function() {
+    $('#select-all').click(function() {
+        var checked = this.checked;
+        $('input[type="checkbox"]').each(function() {
+        this.checked = checked;
+    });
+    })
+});
+</script>
 <div class="container-fluid mt--7">
     <div class="row">
         <div class="col">
@@ -5,20 +15,32 @@
                 <div class="card-header border-0 ">
                     <h3 class="mb-0">Pagamentos pendentes</h3>
                 </div>
+                
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
+                                <th scope="col"> <input type="checkbox" name="select-all" id="select-all" /> Check</th>
                                 <th scope="col">Nome do survey</th>
                                 <th scope="col">Nome do cliente</th>
                                 <th scope="col">Data do pagamento</th>
                                 <th scope="col">Valor</th>
                                 <th scope="col">Situação</th>
-                                <th scope="col"></th>
+                                <th scope="col">                       
+
+                                            <button class="btn btn-primary" type="button"
+                                                 title="Visualizar" (click)="payMarkers()">Pagar marcados</button>
+
+
+                                </th>
                             </tr>
                         </thead>
                         <tbody *ngFor="let item of paymentPending">
                             <tr>
+                                <td>
+                                    <input type="checkbox" name="check" id="check" value={{item.Id}} (change)="changeCheckbox(item.Id)" />
+
+                                </td>
                                 <td>
                                     {{item.categoryId}}
                                 </td>
@@ -74,105 +96,6 @@
                         </ul>
                     </nav>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
-    [ngStyle]="{'display':display}">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Transação</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container d-flex justify-content-center mt-5 mb-5">
-                    <div class="row">
-                        <div class="col-md-6"> <span>Metodo de pagamento</span>
-                            <div class="card">
-                                <div class="accordion" id="accordionExample">
-                                    <div class="card">
-                                        <div class="card-header p-0" id="headingTwo">
-                                            <h2 class="mb-0"> <button
-                                                    class="btn btn-light btn-block text-left collapsed p-3 rounded-0 border-bottom-custom"
-                                                    type="button" data-toggle="collapse" data-target="#collapseTwo"
-                                                    aria-expanded="false" aria-controls="collapseTwo">
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span>Paypal</span> <img src="https://i.imgur.com/7kQEsHU.png"
-                                                            width="30"> </div>
-                                                </button> </h2>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                            data-parent="#accordionExample">
-                                            <div class="card-body"> <input type="text" class="form-control"
-                                                    placeholder="Paypal email"> </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header p-0">
-                                            <h2 class="mb-0"> <button
-                                                    class="btn btn-light btn-block text-left p-3 rounded-0"
-                                                    data-toggle="collapse" data-target="#collapseOne"
-                                                    aria-expanded="true" aria-controls="collapseOne">
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span>Cartão de crédito</span>
-                                                        <div class="icons"> <img src="https://i.imgur.com/2ISgYja.png"
-                                                                width="30"> <img src="https://i.imgur.com/W1vtnOV.png"
-                                                                width="30"> <img src="https://i.imgur.com/35tC99g.png"
-                                                                width="30"> <img src="https://i.imgur.com/2ISgYja.png"
-                                                                width="30"> </div>
-                                                    </div>
-                                                </button> </h2>
-                                        </div>
-                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                            data-parent="#accordionExample">
-                                            <div class="card-body payment-card-body"> <span
-                                                    class="font-weight-normal card-text">Numero do cartao</span>
-                                                <input type="text" class="form-control"
-                                                    placeholder="0000 0000 0000 0000">
-                                                <div class="row mt-3 mb-3">
-                                                    <div class="col-md-6"> <span
-                                                            class="font-weight-normal card-text">Data que expira</span>
-                                                        <input type="text" class="form-control" placeholder="MM/YY">
-                                                    </div>
-                                                    <div class="col-md-6"> <span
-                                                            class="font-weight-normal card-text">CVV</span>
-                                                        <input type="text" class="form-control" placeholder="000">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6"> <span>Resumo</span>
-                            <div class="card">
-                                <hr class="mt-0 line">
-                                <div class="p-3">
-                                    <div class="d-flex justify-content-between mb-2"> <span>Valor da pesquisa</span>
-                                        <span>R${{value}}</span> </div>
-                                    <div class="d-flex justify-content-between"> <span> Comissão <i
-                                                class="fa fa-clock-o"></i></span> <span>10%</span> </div>
-                                </div>
-                                <hr class="mt-0 line">
-                                <div class="p-3 d-flex justify-content-between">
-                                    <div class="d-flex flex-column"> <span>Valor total</span> <small> um texto
-                                            aqui</small> </div> <span>R${{value * 1.1}}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                    (click)="onCloseHandled()">Fechar</button>
-                <button type="button" class="btn btn-primary" (click)="sendPaymentPening()">Efetuar transação</button>
             </div>
         </div>
     </div>

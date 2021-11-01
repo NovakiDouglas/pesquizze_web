@@ -1,69 +1,176 @@
 <div class="container-fluid mt--7">
-<div id="fb-editor"></div>
+    <div id="fb-editor"></div>
 
-<div class="col-md-1">
-    <button type="button" class="btn btn-block btn-warning mb-3" data-toggle="modal" data-target="#modal-notification" (click)="Balance()">
-        Salvar
-    </button>
-    <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
-        <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-            <div class="modal-content bg-gradient-danger">
-                <div class="modal-header">
-                    <h6 class="modal-title" id="modal-title-notification">Salvar</h6>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="py-3 text-center">
-                        <i class="ni ni-bell-55 ni-3x"></i>
-                        <h4 class="heading mt-4">SALVAR</h4>
-                        <p>
-                            Informe os dados para o survey.
-                        </p>
+    <div class="col-md-1">
+        <button type="button" class="btn btn-block btn-warning mb-3" data-toggle="modal"
+            data-target="#modal-notification" (click)="Balance()">
+            Salvar
+        </button>
+        <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification"
+            aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                <div class="modal-content bg-gradient-danger">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="modal-title-notification">Salvar</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
                     </div>
+
+                    <div class="modal-body">
+                        <div class="py-3 text-center">
+                            <i class="ni ni-bell-55 ni-3x"></i>
+                            <h4 class="heading mt-4">SALVAR</h4>
+                            <p>
+                                Informe os dados para o survey.
+                            </p>
+                        </div>
                         <div class="form-group">
                             <label for="inputAddress2">Nome</label>
-                            <input type="text" class="form-control" id="inputAddress2" placeholder="Nome do survey" #Name>
-                          </div>
+                            <input type="text" class="form-control" id="inputAddress2" placeholder="Nome do survey"
+                                #Name>
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                              <label for="inputEmail4">Quantidade de pesquisas</label>
-                              <input  [ngModel]="qnt" (ngModelChange)="modelChangeQnt($event)" type="number" class="form-control" id="qntPesq" placeholder="Quantidade de pesquisas" #QntPesq>
+                                <label for="inputEmail4">Quantidade de pesquisas</label>
+                                <input [ngModel]="qnt" (ngModelChange)="modelChangeQnt($event)" type="number"
+                                    class="form-control" id="qntPesq" placeholder="Quantidade de pesquisas" #QntPesq>
                             </div>
                             <div class="form-group col-md-6">
-                              <label for="inputPassword4">Valor total</label>
-                              <input disabled   type="number" class="form-control" id="valorTotal" placeholder="{{'R$ '+vlr}}"  #ValorTotal>
+                                <label for="inputPassword4">Valor total</label>
+                                <input disabled type="number" class="form-control" id="valorTotal"
+                                    placeholder="{{'R$ '+vlr}}" #ValorTotal>
                             </div>
-                          </div>
-                          <div class="form-row">
-                            
+                        </div>
+                        <div class="form-row">
+
                             <div class="form-group col-md-2">
                                 <label for="inputZip">Pais</label>
-                                <select  class="form-control" id="pais" #Country></select>
-                              </div>
+                                <select class="form-control" id="pais" #Country></select>
+                            </div>
                             <div class="form-group col-md-4">
-                              <label for="inputState">Estado</label>
-                              <select id="estado" class="form-control" #State>
-                              </select>
+                                <label for="inputState">Estado</label>
+                                <select id="estado" class="form-control" #State>
+                                </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputCity">Cidade</label>
                                 <select class="form-control" id="cidade" #City></select>
-                              </div>
-                          </div>
+                            </div>
+                        </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" (click)="CreateRecord(Name.value,QntPesq.value,ValorTotal.value,City.value,State.value,Country.value)" data-dismiss="modal">
+                            <button type="button" class="btn btn-white"
+                                (click)="CreateRecord(Name.value,QntPesq.value,ValorTotal.value,City.value,State.value,Country.value)"
+                                data-dismiss="modal">
                                 Salvar
                             </button>
                             <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">
                                 Voltar
                             </button>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    [ngStyle]="{'display':display}">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Transação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container d-flex justify-content-center mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-md-6"> <span>Metodo de pagamento</span>
+                            <div class="card">
+                                <div class="accordion" id="accordionExample">
+                                    <div class="card">
+                                        <div class="card-header p-0" id="headingTwo">
+                                            <h2 class="mb-0"> <button
+                                                    class="btn btn-light btn-block text-left collapsed p-3 rounded-0 border-bottom-custom"
+                                                    type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                                    aria-expanded="false" aria-controls="collapseTwo">
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <span>Paypal</span> <img src="https://i.imgur.com/7kQEsHU.png"
+                                                            width="30"> </div>
+                                                </button> </h2>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                            data-parent="#accordionExample">
+                                            <div class="card-body"> <input type="text" class="form-control"
+                                                    placeholder="Paypal email"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-header p-0">
+                                            <h2 class="mb-0"> <button
+                                                    class="btn btn-light btn-block text-left p-3 rounded-0"
+                                                    data-toggle="collapse" data-target="#collapseOne"
+                                                    aria-expanded="true" aria-controls="collapseOne">
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <span>Cartão de crédito</span>
+                                                        <div class="icons"> <img src="https://i.imgur.com/2ISgYja.png"
+                                                                width="30"> <img src="https://i.imgur.com/W1vtnOV.png"
+                                                                width="30"> <img src="https://i.imgur.com/35tC99g.png"
+                                                                width="30"> <img src="https://i.imgur.com/2ISgYja.png"
+                                                                width="30"> </div>
+                                                    </div>
+                                                </button> </h2>
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                            data-parent="#accordionExample">
+                                            <div class="card-body payment-card-body"> <span
+                                                    class="font-weight-normal card-text">Numero do cartao</span>
+                                                <input type="text" class="form-control"
+                                                    placeholder="0000 0000 0000 0000">
+                                                <div class="row mt-3 mb-3">
+                                                    <div class="col-md-6"> <span
+                                                            class="font-weight-normal card-text">Data que expira</span>
+                                                        <input type="text" class="form-control" placeholder="MM/YY">
+                                                    </div>
+                                                    <div class="col-md-6"> <span
+                                                            class="font-weight-normal card-text">CVV</span>
+                                                        <input type="text" class="form-control" placeholder="000">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"> <span>Resumo</span>
+                            <div class="card">
+                                <hr class="mt-0 line">
+                                <div class="p-3">
+                                    <div class="d-flex justify-content-between mb-2"> <span>Valor da pesquisa</span>
+                                        <span>R${{vlr}}</span> </div>
+                                    <div class="d-flex justify-content-between"> <span> Comissão <i
+                                                class="fa fa-clock-o"></i></span> <span>10%</span> </div>
+                                </div>
+                                <hr class="mt-0 line">
+                                <div class="p-3 d-flex justify-content-between">
+                                    <div class="d-flex flex-column"> <span>Valor total</span> <small> um texto
+                                            aqui</small> </div> <span>R${{vlr * 1.1}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="onCloseHandled()">Fechar</button>
+                <button type="button" class="btn btn-primary" (click)="SaveRecord()">Efetuar transação</button>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="my-rating"></div>

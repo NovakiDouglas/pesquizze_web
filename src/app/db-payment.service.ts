@@ -8,35 +8,32 @@ export class DbPaymentService {
   constructor(private firestore: AngularFirestore) {}
 
   ready_paymentPending() {
-    return this.firestore.collection('paymentPending').snapshotChanges();
+    return this.firestore.collection('paymentPending', ref => ref.where('situation', '==', 'pendente')).snapshotChanges();
   }
   update_paymentPending(Id, record) {
     this.firestore.collection('paymentPending').doc(Id).update(record);
   }
-  create_payment(record) {
+  create_payment(record, user,uid) {
     this.firestore.collection('payment').add(record);
-  }
-  async update_money(Id, record) {
-    console.log(record);
-    this.firestore.collection('users').doc(Id).update(record);
+    console.log(user)
+    this.firestore.collection('users').doc(uid).update(user);
   }
   searchUser(Id, value) {
-    let record = {};
-
+ var user = {};
     this.firestore
       .collection('users')
       .doc(Id)
       .ref.get()
       .then(function (doc) {
         if (doc.exists) {
-          record['value'] = 10;
-          console.log('There is no document!');
+          user['value'] = doc.data()['value'] + value;
+          user['displayName'] = doc.data()['displayName'] ;
         }
       })
       .catch(function (error) {
         console.log('There was an error getting your document:', error);
       });
-
-    this.update_money(Id, record);
+      console.log(user)
+return user;
   }
 }
