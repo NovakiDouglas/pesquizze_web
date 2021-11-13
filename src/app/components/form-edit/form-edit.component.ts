@@ -100,6 +100,7 @@ export class FormEditComponent implements OnInit {
  
   Balance(){
     const obj = JSON.parse(formBuilder.formData);
+    this.balance = 0;
     obj.forEach(element => {
       var type = element['type'];
       if(type == "number"){

@@ -24,11 +24,11 @@ const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   {
     path:'',
     component: MenuComponent,
     children:[
-      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'email-verification', component: VerifyEmailComponent },
       { path: 'form', component: FormComponent },

@@ -28,6 +28,7 @@ export class FormComponent implements OnInit {
           id: e.payload.doc.id,
           nome: e.payload.doc.data()['name'],
           value: e.payload.doc.data()['value'],
+          qntPesq: e.payload.doc.data()['qntPesq']
           //inserir demais atributos que serao retornados para a tela de listagem
         };
       })

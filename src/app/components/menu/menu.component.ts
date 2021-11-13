@@ -19,14 +19,14 @@ export class MenuComponent implements OnInit {
 
   constructor(public dbAnswersService: DbAnswersService,public ngAuthService: NgAuthService, public router: Router,) { }
   ngOnInit() {
-  this.dbAnswersService.ready_answers().subscribe(doc=>{
-    this.pesquisaEfetuada = doc.size;
+  this.dbAnswersService.ready_answers_Snap().subscribe(doc=>{
+    this.pesquisaEfetuada = doc.length;
     });
-    this.dbAnswersService.ready_users().subscribe(doc=>{
-      this.users = doc.size;
+    this.dbAnswersService.ready_users_Snap().subscribe(doc=>{
+      this.users = doc.length;
       })
-      this.dbAnswersService.ready_surveys().subscribe(doc=>{
-        this.surveys = doc.size;
+      this.dbAnswersService.ready_surveys_Snap().subscribe(doc=>{
+        this.surveys = doc.length;
         })
   }
   returnPageDashboard() {

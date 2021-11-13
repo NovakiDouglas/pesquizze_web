@@ -52,6 +52,8 @@ export class UsersComponent implements OnInit {
           situation: e.payload.doc.data()['situation'],
           userID: e.payload.doc.data()['userID'],
           value: e.payload.doc.data()['value'],
+          categoryName: e.payload.doc.data()['nomeSurvey'],
+          userName: e.payload.doc.data()['nomeCliente']
         }
       })
     })
@@ -86,13 +88,13 @@ payMarkers(){
     markers.push($(this).val());
 });
 markers.forEach(element => {
-  alert(element)
+  console.log(element)
 });
 }
 
    sendPaymentPening(){
     let record = {};
-    record['situation'] = "pago";alert(this.Id);
+    record['situation'] = "pago";
      this.dbPaymentService.update_paymentPending(this.Id,record);
     
      this.sendPayment();

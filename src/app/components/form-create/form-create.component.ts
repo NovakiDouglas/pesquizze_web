@@ -20,8 +20,8 @@ let options = {
     'paragraph',
     'select',
     'text'
-  ]
-  
+  ],
+  showActionButtons: false,
 };
 let fields = [
   {
