@@ -12,7 +12,6 @@ export class MyBarChartComponent implements OnInit {
   
 
     recieverData(){
-
      this.chartService.getFirestoreData();
      this.question = this.chartService.getQuestao();
     }

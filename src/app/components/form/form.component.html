@@ -34,6 +34,12 @@
                                 <td class="text-right">
                                     <ul class="list-inline m-0">
                                         <li class="list-inline-item">
+                                            <button class="btn btn-light btn-sm rounded-0" type="button"
+                                                data-toggle="tooltip" data-placement="top" title="Relatorio"
+                                              (click)="getFile(item)"><i
+                                                    class="fas fa-file"></i></button>
+                                        </li>
+                                        <li class="list-inline-item">
                                             <button class="btn btn-primary btn-sm rounded-0" type="button"
                                                 data-toggle="tooltip" data-placement="top" title="Visualizar"
                                                 [routerLink]="['/form-details', item.id]"><i

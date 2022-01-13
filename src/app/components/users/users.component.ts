@@ -113,7 +113,7 @@ markers.forEach(element => {
     record['method'] = "cartao";
     record['name'] = this.payer;
     record['type'] =this. payer;
-    this.dbPaymentService.create_payment(record,this.user,this.userID);
+    this.dbPaymentService.create_payment(record,this.userID);
    }
 
 

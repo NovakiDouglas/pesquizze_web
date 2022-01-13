@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ChartService } from 'src/app/chart.service';
 import { DbCategoryService } from 'src/app/db-category.service';
+import {FormService} from './form.service'
 
 @Component({
   selector: 'app-form',
@@ -20,7 +23,7 @@ export class FormComponent implements OnInit {
   name: string;
   access:boolean;
 
-  constructor(public dbCategoryService: DbCategoryService, public router: Router) { }
+  constructor(public dbCategoryService: DbCategoryService, public router: Router, public chartService: ChartService) { }
   ngOnInit() {
     this.dbCategoryService.ready_category().subscribe(data => {
       this.category = data.map(e =>{
@@ -84,4 +87,10 @@ export class FormComponent implements OnInit {
   returnPageDetailForm() {
     return  this.router.navigate(['/form-detail']);
   }
+
+
+  getFile(item){
+    this.chartService.getJsonData(item);
+  }
+  
 }

@@ -25,8 +25,8 @@ export class FormDetailsComponent implements OnInit {
   constructor(
     public dbCategoryService: DbCategoryService,
     public router: ActivatedRoute,
-    public chartService: ChartService,
-    public rter: Router
+    public chartService: ChartService
+    
   ) {}
 
   ngOnInit(): void {
@@ -46,11 +46,12 @@ export class FormDetailsComponent implements OnInit {
   ReadyField(fields) {
     this.cont = 0;
     this.outputArray = JSON.parse(fields);
+    console.log(JSON.parse(fields))
   }
 
    sendQuestionRedirect(qst,type){
-    this.rter.navigate(['/chart']);
     this.chartService.setQuestao(qst,this.id,type);
+    
   }
 
 }

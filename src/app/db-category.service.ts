@@ -10,6 +10,8 @@ export class DbCategoryService {
   constructor(private firestore: AngularFirestore,) { }
 
   create_category(record){
+    
+    alert("salvo com sucesso")
     return this.firestore.collection('categorias').add(record);
   }
   ready_category(){
